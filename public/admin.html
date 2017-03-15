@@ -1,0 +1,25 @@
+<html>
+  <head><script src="/socket.io/socket.io.js"></script>
+    <script>var socket = io();
+    window.onload = function() {
+      var sendMsgButton = document.querySelector("#broadcast-msg"),
+          sendMsgType = document.querySelector("#msg-type"),
+          sendMsgContent = document.querySelector("#msg-content")
+      sendMsgButton.addEventListener('click', function(e) {
+        var msgType = sendMsgType.value;
+        var msgContent = sendMsgContent.value;
+        var messageToSend = {};
+        messageToSend["messageType"] = msgType;
+        messageToSend["messageContent"] = msgContent;
+        socket.emit('adminMsg', messageToSend);
+      });
+    }
+    </script>
+  </head>
+  <body>
+    <label for='msg-type'>Message Type:</label><input id='msg-type' type='text'></input>
+    <label for='msg-content'>Message Content:</label><input id='msg-content' type='text'></input>
+    <button id='broadcast-msg'>Broadcast the message</button>
+    <table id='connected-clients'></table>
+  </body>
+</html>
