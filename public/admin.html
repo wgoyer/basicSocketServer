@@ -1,25 +1,32 @@
 <html>
-  <head><script src="/socket.io/socket.io.js"></script>
-    <script>var socket = io();
-    window.onload = function() {
-      var sendMsgButton = document.querySelector("#broadcast-msg"),
-          sendMsgType = document.querySelector("#msg-type"),
-          sendMsgContent = document.querySelector("#msg-content")
-      sendMsgButton.addEventListener('click', function(e) {
-        var msgType = sendMsgType.value;
-        var msgContent = sendMsgContent.value;
-        var messageToSend = {};
-        messageToSend["messageType"] = msgType;
-        messageToSend["messageContent"] = msgContent;
-        socket.emit('adminMsg', messageToSend);
-      });
-    }
-    </script>
+  <head>
+    <script src="/socket.io/socket.io.js" />
+    <script src='/public/admin.js' />
   </head>
   <body>
-    <label for='msg-type'>Message Type:</label><input id='msg-type' type='text'></input>
-    <label for='msg-content'>Message Content:</label><input id='msg-content' type='text'></input>
-    <button id='broadcast-msg'>Broadcast the message</button>
-    <table id='connected-clients'></table>
+
+    <div id='connection'>
+      <button id='connect'>Connect</button>
+      <button id='disconnect'>Disconnect</button>
+    </div>
+
+    <div id='broadcast'>
+      <label for='msg-type'>Message Type:</label><input id='msg-type' type='text'></input>
+      <label for='msg-content'>Message Content:</label><input id='msg-content' type='text'></input>
+      <button id='broadcast-msg'>Broadcast the message</button>
+    </div>
+    
+    <div>
+      <table id='connected-clients'></table>
+    </div>
+
+    <div>
+      <table id='system-log'></table>
+    </div>
+
+    <div>
+      <table id='room-data'></table>
+    </div>
+    
   </body>
 </html>

@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+  </head>
+  <body>
+    <h3>Client Page</h3>
+    <table id="connect-actions">
+      <tr><button id="connect">Connect</button></tr>
+      <tr><button id="disconnect">Disconnect</button></tr>
+      <tr><input type="text" placeholder="room name"></input><button id="join-room">Join Room</button></tr>
+    </table>
+    <h3 id="my-status" style="color: red;">Disconnected</h3>
+    <table id="my-details">
+      <tr id="my-socket"><td><label>Socket ID</label></td><td></td></tr>
+      <tr id="room-details"><td></td><td></td></tr>
+    </table>
+  </body>
+</html>

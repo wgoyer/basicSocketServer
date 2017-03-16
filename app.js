@@ -3,24 +3,16 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/client.html');
 });
 
 app.get('/admin', function(req, res) {
   res.sendFile(__dirname + '/public/admin.html');
-})
-
-app.get('/socket.js', function(req, res) {
-  res.sendFile(__dirname + '/public/socket.js');
 });
 
 io.on('connection', function(socket){
   socket.broadcast.emit('clientClient', socket.id);
   console.log('a user connected');
-
-  socket.on('hello', function(data) {
-    console.log(data);
-  });
 
   socket.on('getClients', function() {
     socket.emit('clientList', io.clients);
