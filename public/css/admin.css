@@ -1,0 +1,84 @@
+button, .connected-clients {
+  border: black solid 1px;
+  border-radius: 3px;
+}
+
+#connection {
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: lightgrey;
+}
+
+.connect-status {
+  font-size: 16px;
+  font-weight: bolder;
+  margin-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.disconnected, .log-disconnect {
+  color: red;
+}
+
+.connected, .log-connect {
+  color: green;
+}
+
+.connected-clients {
+  margin-top: 10px;
+  width: 725px;
+}
+
+#base-control, .connected-clients {
+  padding: 5px 5px 5px 5px;
+}
+
+#base-control, .connected-clients table td, .connected-clients table th {
+  border: black solid 1px;
+}
+
+.connected-clients table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+
+#base-control {
+  width: 50%;
+  border-radius: 3px;
+}
+
+.system-log {
+  margin-top: 10px;
+}
+
+.system-log table {
+  background-color: black;
+  color: lightgrey;
+  border: 1px solid black;
+  border-radius: 3px;
+  width: 60%;
+  height: 50px;
+  font-size: 12px;  
+}
+
+.system-log .log-message {
+  color: springgreen;
+}
+
+.system-log table .event {
+  font: bold;
+}
+
+.log-bracket {
+  font: bold;
+  color: white;
+}
+
+.log-timestamp {
+  color: lightgrey;
+}

@@ -1,31 +1,41 @@
 <html>
   <head>
-    <script src="/socket.io/socket.io.js" />
-    <script src='/public/admin.js' />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='/js/log.js'></script>
+    <script src='/js/adminSocks.js'></script>
+    <script src='/js/admin.js'></script>
+    <script src='/js/clientsTable.js'></script>    
+    <link rel="stylesheet" href="/css/admin.css" />
   </head>
   <body>
 
-    <div id='connection'>
-      <button id='connect'>Connect</button>
-      <button id='disconnect'>Disconnect</button>
+    <div id='base-control'>
+      <div id='connection'>
+        
+        
+        <button id='connect' class='disconnect'>Connect</button><span class='connect-status disconnect disconnected'>Disconnected</span>
+        <button id='disconnect' class='hidden connect'>Disconnect</button><span class='connect-status connect connected hidden'>Connected</span>
+      </div>
+
+      <div id='broadcast' class='hidden connect'>
+        <label for='msg-type'>Message Type:</label><input id='msg-type' type='text'></input>
+        <label for='msg-content'>Message Content:</label><input id='msg-content' type='text'></input>
+        <button id='broadcast-msg'>Broadcast</button>
+      </div>
     </div>
 
-    <div id='broadcast'>
-      <label for='msg-type'>Message Type:</label><input id='msg-type' type='text'></input>
-      <label for='msg-content'>Message Content:</label><input id='msg-content' type='text'></input>
-      <button id='broadcast-msg'>Broadcast the message</button>
-    </div>
     
-    <div>
-      <table id='connected-clients'></table>
+    
+    <div class='connected-clients hidden connect'>
+      <table><th>RoomName</th><th>ClientID</th><th>Connect Time</th><th colspan=2></th></table>
     </div>
 
-    <div>
-      <table id='system-log'></table>
+    <div class='system-log'>
+      <table></table>
     </div>
 
-    <div>
-      <table id='room-data'></table>
+    <div class='root-data hidden connect'>
+      <table></table>
     </div>
     
   </body>
