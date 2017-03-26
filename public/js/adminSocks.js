@@ -11,8 +11,9 @@ function addSocketListeners(socket) {
     setConnectState(false);
   });
 
-  socket.on('clientsList', function(data) {
-    
+  socket.on('clientList', function(data) {
+    updateLog('clientList', data);
+    updateClientsTable('allClients', data);
   });
 
   socket.on('clientConnected', function(data) {
