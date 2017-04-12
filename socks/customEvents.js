@@ -1,6 +1,8 @@
-function addCustomEvents(socket) {
-  socket.on('getIndex', function(data) {
-    console.log('hello');
+function addCustomEvents(io) {
+  io.on('connection', function(socket){
+    socket.on('getIndex', function(data) {
+      console.log('hello');
+    });
   });
 }
 

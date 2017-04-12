@@ -21,30 +21,15 @@ app.get('/admin', function(req, res) {
   res.sendFile(__dirname + '/public/admin.html');
 });
 
-io.on('connection', function(socket){
-  baseEvents.addBaseEvents(socket);
-  dj.addCustomEvents(socket);
-});
+baseEvents.addBaseEvents(io);
+dj.addCustomEvents(io);
 
-function getClientsList(requesterId, callback) {
-  var clients = {};
-  io.clients(function(err, clientsArray) {
-    if(err) return callback(err, null);
-    if(clientsArray.length > 0) {
-      clientsArray.splice(clientsArray.indexOf(requesterId), 1);
-      for(var i = 0; i < clientsArray.length; i++) {
-        var clientId = clientsArray[i];
-        var clientRooms = Object.keys(io.sockets.connected[clientId].rooms);
-        for(var y = 0; y < clientRooms.length; y++) {
-          if(clientRooms[y] != clientsArray[i]) {
-            clients[clientsArray[i]] = clientRooms[y];
-          }
-        }
-      }
-      return callback(null, clients);
-    }
-  });
-}
+// io.on('connection', function(socket){
+  // baseEvents.addBaseEvents(socket);
+  // dj.addCustomEvents(socket);
+// });
+
+
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
