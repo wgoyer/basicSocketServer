@@ -1,13 +1,13 @@
 function addBaseEvents(io) {
   io.on('connection', function(socket){
     socket.to('admin').emit('clientConnected', {id: socket.id});
-    socket.join('lobby', function() {
-      socket.to('lobby').to('admin').emit('roomJoined', {roomName: 'lobby', id: socket.id});
-    });
+    // socket.join('lobby', function() {
+    //   socket.to('lobby').to('admin').emit('roomJoined', {roomName: 'lobby', id: socket.id});
+    // });
 
     socket.on('joinAdmin', function() {
       socket.join('admin');
-      socket.leave('lobby');
+      // socket.leave('lobby');
       getClientsList(socket.id, function(err, clients){
         if(err) {
           socket.emit('err', err);

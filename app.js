@@ -9,6 +9,10 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/client.html');
 });
 
+app.get('/spotifyAuth', function(req, res){
+  res.sendFile(__dirname + '/public/spotify.html');
+});
+
 app.get('/js/:file', function(req, res) {
   res.sendFile(`${__dirname}/public/js/${req.params.file}`);
 });
@@ -24,13 +28,6 @@ app.get('/admin', function(req, res) {
 baseEvents.addBaseEvents(io);
 dj.addCustomEvents(io);
 
-// io.on('connection', function(socket){
-  // baseEvents.addBaseEvents(socket);
-  // dj.addCustomEvents(socket);
-// });
-
-
-
-http.listen(3000, function(){
+http.listen(process.env.PORT || '3000', function(){
   console.log('listening on *:3000');
 });

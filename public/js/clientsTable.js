@@ -14,15 +14,20 @@ function updateClientsTable(type, data) {
     }
   }
 
-  var appendableRecord = document.getElementsByClassName(`${data.id}`);
-  if(appendableRecord.length > 0) {
-    if(type === 'update') {
-      appendableRecord[0].innerHTML = innerHTML;
-      addClientMessageListener(data.id);
+  var clientRow = document.getElementsByClassName(`${data.id}`)[0];
+  if(type === 'update' && clientRow) {
+    var tableMap = {
+      "roomName":"room-name",
+      "connectTime":"connect-time"
     }
-    if(type === 'disconnect') {
-      document.getElementsByClassName(`${data.id}`)[0].remove();
-    }
+    Object.keys(data).forEach(function(key) {
+      if(tableMap[key]) {
+        clientRow.getElementsByClassName(tableMap[key])[0].innerHTML = data[key];
+      }
+    });
+  }
+  if(type === 'disconnect' && clientRow) {
+    clientRow.remove();
   }
 }
 
@@ -42,8 +47,8 @@ function buildInnerHtml(type, data) {
   } 
 
   if(type === 'update') {
-    var connectTimeSelector = document.getElementsByClassName(data.id)[0];
-    connectTime = connectTimeSelector.querySelector('td.timestamp').innerHTML;
+    var clientRow = document.getElementsByClassName(data.id)[0];
+    connectTime = connectTimeSelector.querySelector('td.connect-time').innerHTML || "N/A";
   }
 
   if(type === 'allClients') {
@@ -61,9 +66,9 @@ function buildInnerHtml(type, data) {
   if(type === 'update' || type === 'connect' || type === 'allClients') {
     if(!data.roomName) data.roomName = "NONE";
     innerHTML = `
-    <td>${data.roomName}</td>
-    <td>${data.id}</td>
-    <td class='timestamp'>${connectTime}</td>
+    <td class='room-name'>${data.roomName}</td>
+    <td class='socket-id'>${data.id}</td>
+    <td class='connect-time'>${connectTime}</td>
     ${messageInputs}`
   }
 
